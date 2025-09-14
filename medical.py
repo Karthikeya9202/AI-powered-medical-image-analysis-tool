@@ -12,7 +12,7 @@ from tensorflow.keras.applications.resnet50 import preprocess_input
 # -----------------------------
 # 🔑 API Key Setup
 # -----------------------------
-GOOGLE_API_KEY = "AIzaSyDNIpxHfk3bI95KbLzyDbEqB7UWbM6cPHI"
+GOOGLE_API_KEY = "AIzaSyDNIpxHfk3bI95KbLzyDb7UWbM6cPHI"
 if not GOOGLE_API_KEY:
     raise ValueError("⚠️ Please set GOOGLE_API_KEY as an environment variable or replace YOUR_API_KEY_HERE.")
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -300,4 +300,5 @@ elif role == "Doctor":
         # Cleanup
         for p in paths:
             os.remove(p)
+
 
