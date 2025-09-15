@@ -1,0 +1,8 @@
+opencv-python
+ddgs
+torchvision
+torch
+numpy
+streamlit
+langchain_community
+tensorflow
