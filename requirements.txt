@@ -5,4 +5,5 @@ torch
 numpy
 streamlit
 langchain_community
+google-generativeai
 tensorflow
