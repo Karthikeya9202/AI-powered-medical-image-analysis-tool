@@ -5,7 +5,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # Gemini Vision Model
-gemini_model = genai.GenerativeModel("gemini-1.5-flash")
+gemini_model = genai.GenerativeModel("gemini-2.5-flash")
 
 # DuckDuckGo Search
 search_tool = DuckDuckGoSearchRun()
@@ -61,4 +61,5 @@ Analyze the uploaded medical scan(s) and structure your response as follows:
 - Summarize 2–3 relevant studies or guidelines (integrated via search).
 
 """
+
 
