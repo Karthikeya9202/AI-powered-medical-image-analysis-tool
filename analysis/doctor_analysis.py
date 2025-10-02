@@ -10,6 +10,7 @@ def analyze_doctor_images(image_paths: list):
         # Preprocess
         resized, _ = preprocess_image(path)
 
+        # Convert to bytes for Gemini
         _, buffer = cv2.imencode(".png", resized)
         image_bytes = buffer.tobytes()
 
@@ -19,24 +20,23 @@ def analyze_doctor_images(image_paths: list):
         )
         draft_text = draft.text
 
-        # Extract queries
+        # Extract queries for references
         queries = extract_queries(draft_text)
-
-        # Search
         search_results = run_search(queries)
 
-        # Refine
+        # Refine report
         enriched_prompt = f"""
 Here is the draft medical report:
 
 {draft_text}
 
-Now refine "Research References" section using:
+Now refine the "Research References" section using:
 
 {search_results}
+
 Return the full updated report for this scan.
 """
-        final = gemini_model.generate_content(enriched_prompt)
-        results.append((resized, final.text))
+        final = gemini_model.generate_content([enriched_prompt])
+        results.append((resized, final.text))  # Use preprocessed image
 
     return results
