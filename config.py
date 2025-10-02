@@ -1,10 +1,8 @@
+import streamlit as st
 import google.generativeai as genai
 from langchain_community.tools import DuckDuckGoSearchRun
 
-GOOGLE_API_KEY = "AIzaSyC6HjV3CNd3hH9PSJkTxNerb5m9qR-BGRo"
-if not GOOGLE_API_KEY:
-    raise ValueError("⚠️ Please set GOOGLE_API_KEY as an environment variable or replace YOUR_API_KEY_HERE.")
-genai.configure(api_key=GOOGLE_API_KEY)
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # Gemini Vision Model
 gemini_model = genai.GenerativeModel("gemini-1.5-flash")
@@ -63,3 +61,4 @@ Analyze the uploaded medical scan(s) and structure your response as follows:
 - Summarize 2–3 relevant studies or guidelines (integrated via search).
 
 """
+
