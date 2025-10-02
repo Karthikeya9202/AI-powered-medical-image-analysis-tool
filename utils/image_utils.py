@@ -1,5 +1,6 @@
 import cv2
 import os
+import uuid
 
 def preprocess_image(image_path, target_width=500):
     """Load & resize image while keeping aspect ratio."""
@@ -12,9 +13,9 @@ def preprocess_image(image_path, target_width=500):
     return resized, rgb_image
 
 def save_temp_file(uploaded_file):
-    """Save uploaded file temporarily and return path."""
+    """Save uploaded file with unique name and return path."""
     ext = uploaded_file.name.split(".")[-1]
-    path = f"temp_upload.{ext}"
+    path = f"temp_upload_{uuid.uuid4().hex}.{ext}"  # unique filename
     with open(path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     return path
