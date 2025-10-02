@@ -1,7 +1,7 @@
 import google.generativeai as genai
 from langchain_community.tools import DuckDuckGoSearchRun
 
-GOOGLE_API_KEY = "AIzaSyDNIpxHfk3bI95KbLzyDbEqB7UWbM6cPHI"
+GOOGLE_API_KEY = "AIzaSyC6HjV3CNd3hH9PSJkTxNerb5m9qR-BGRo"
 if not GOOGLE_API_KEY:
     raise ValueError("⚠️ Please set GOOGLE_API_KEY as an environment variable or replace YOUR_API_KEY_HERE.")
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -61,4 +61,5 @@ Analyze the uploaded medical scan(s) and structure your response as follows:
 
 ### 5. Research References
 - Summarize 2–3 relevant studies or guidelines (integrated via search).
+
 """
