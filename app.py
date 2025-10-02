@@ -70,18 +70,23 @@ elif role == "Doctor":
     )
 
     if uploaded_files and st.sidebar.button("🔍 Analyze All Scans"):
+        # Save each uploaded file uniquely
         paths = [save_temp_file(f) for f in uploaded_files]
 
         with st.spinner("Analyzing scans..."):
             reports = analyze_doctor_images(paths)
 
-            for idx, (img, report) in enumerate(reports, 1):
-                st.image(img, caption=f"Processed Image {idx}", use_container_width=True)
-                cam_img = generate_gradcam(cv2.imread(paths[idx - 1]))
+            for idx, (resized_img, report) in enumerate(reports, 1):
+                # Display preprocessed image
+                st.image(resized_img, caption=f"Processed Image {idx}", use_container_width=True)
+
+                # Grad-CAM using preprocessed image
+                cam_img = generate_gradcam(resized_img)
                 st.image(cam_img, caption=f"Grad-CAM Map {idx}", use_container_width=True)
 
                 st.subheader(f"📋 Report {idx}")
                 st.markdown(report)
 
+        # Cleanup all temp files
         for p in paths:
             cleanup_file(p)
